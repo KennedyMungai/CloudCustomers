@@ -1,4 +1,4 @@
-namespace CloudCustomers.Test;
+namespace CloudCustomers.Test.Systems.Controllers;
 
 public class TestUsersController
 {
