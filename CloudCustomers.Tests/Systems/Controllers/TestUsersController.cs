@@ -10,16 +10,20 @@ using CloudCustomers.API.Models;
 
 public class TestUsersController
 {
-    // [Fact]
-    // public async Task GetUsersEndpoint_OnSuccess_ReturnsStatusCode200OK()
-    // {
-    //     // Arrange
-    //     var sut = new UsersController();
-    //     // Act
-    //     var result = await sut.GetUsersEndpoint() as OkObjectResult;
-    //     // Assert
-    //     result.StatusCode.Should().Be(200);
-    // }
+    [Fact]
+    public async Task GetUsersEndpoint_OnSuccess_ReturnsStatusCode200OK()
+    {
+        // Arrange
+        var mockUsersService = new Mock<IUserService>();
+        mockUsersService
+                .Setup(service => service.GetAllUsers())
+                .ReturnsAsync(new List<User>());
+        var sut = new UsersController(mockUsersService.Object);
+        // Act
+        var result = await sut.GetUsersEndpoint() as OkObjectResult;
+        // Assert
+        result.StatusCode.Should().Be(200);
+    }
 
     [Fact]
     public async Task GetUsersEndpoint_OnSuccess_InvokeUserServiceExactlyOnce()
