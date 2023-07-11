@@ -21,11 +21,11 @@ public class UsersController : ControllerBase
     {
         var users = await _usersService.GetAllUsers();
 
-        if (users == null)
+        if (users != null)
         {
-            return NotFound();
+            return Ok(users);
         }
 
-        return Ok(users);
+        return NotFound();
     }
 }
