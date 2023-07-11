@@ -66,7 +66,7 @@ public class TestUsersController
         var result = await sut.GetUsersEndpoint() as OkObjectResult;
         // Assert
         result.Should().BeOfType<NotFoundResult>();
-        var objectResult = result as NotFoundResult;
+        var objectResult = result;
         objectResult.StatusCode.Should().Be(404);
     }
 }
