@@ -14,7 +14,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet(Name = "GetUsers")]
-    public asyncTask<IActionResult> GetUsersEndpoint()
+    public async Task<IActionResult> GetUsersEndpoint()
     {
         return null;
     }
