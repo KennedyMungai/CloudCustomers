@@ -39,4 +39,19 @@ public class TestUsersController
         // Assert
         mockUsersService.Verify(service => service.GetAllUsers(), Times.Once);
     }
+
+    [Fact]
+    public async Task GetUsersEndpoint_OnSuccess_ReturnsListOfUsers()
+    {
+        // Arrange
+        var mockUsersService = new Mock<IUserService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        var sut = new UsersController(mockUsersService.Object);
+        // Act
+        var result = new sut.GetAllUsersEndpoint();
+        // Assert
+        result.Should().BeOfType<OkObjectResult>();
+        var objectResult = result as OkObjectResult;
+        objectResult.Value.Should().BeOfType<List<User>>();
+    }
 }
