@@ -45,7 +45,20 @@ public class TestUsersController
     {
         // Arrange
         var mockUsersService = new Mock<IUserService>();
-        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        mockUsersService
+                .Setup(service => service.GetAllUsers())
+                .ReturnsAsync(new List<User>(){
+                    new(){
+                        Id = 1,
+                        Name = "John",
+                        Email = "XXXXXXXXXXXXXX",
+                        Address = new Address(){
+                            Street = "Street",
+                            City = "City",
+                            ZipCode = "ZipCode"
+                        }
+                    }
+                });
         var sut = new UsersController(mockUsersService.Object);
         // Act
         var result = await sut.GetUsersEndpoint() as OkObjectResult;
