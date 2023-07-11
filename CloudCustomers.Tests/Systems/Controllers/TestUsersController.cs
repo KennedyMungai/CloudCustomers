@@ -54,4 +54,17 @@ public class TestUsersController
         var objectResult = result as OkObjectResult;
         objectResult.Value.Should().BeOfType<List<User>>();
     }
+
+    [Fact]
+    public async Task GetUsersEndpoint_OnNoUsersFound_ReturnsStatusCode404NotFound()
+    {
+        // Arrange
+        var mockUsersService = new Mock<IUserService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        var sut = new UsersController(mockUsersService.Object);
+        // Act
+        var result = await sut.GetUsersEndpoint() as OkObjectResult;
+        // Assert
+        result.Should().BeOfType<NotFoundResult>();
+    }
 }
