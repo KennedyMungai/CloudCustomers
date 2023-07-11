@@ -48,7 +48,7 @@ public class TestUsersController
         mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
         var sut = new UsersController(mockUsersService.Object);
         // Act
-        var result = new sut.GetAllUsersEndpoint();
+        var result = await sut.GetUsersEndpoint() as OkObjectResult;
         // Assert
         result.Should().BeOfType<OkObjectResult>();
         var objectResult = result as OkObjectResult;
