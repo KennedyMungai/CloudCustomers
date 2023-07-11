@@ -8,16 +8,13 @@ public class UsersController : ControllerBase
 {
     private readonly ILogger<UsersController> _logger;
 
-    public UsersController(
-        // ILogger<UsersController> logger
-        )
+    public UsersController()
     {
-        // _logger = logger;
     }
 
     [HttpGet(Name = "GetUsers")]
     public async Task<IActionResult> GetUsersEndpoint()
     {
-        return null;
+        return Ok();
     }
 }
