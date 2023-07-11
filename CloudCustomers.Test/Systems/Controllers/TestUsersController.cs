@@ -3,6 +3,7 @@ namespace CloudCustomers.Test.Systems.Controllers;
 using CloudCustomers.API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
+using System.Threading.Tasks;
 
 public class TestUsersController
 {
