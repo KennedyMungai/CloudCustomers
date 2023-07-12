@@ -17,7 +17,8 @@ namespace CloudCustomers.API.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            var usersResponse = await _httpClient.GetAsync("api/users");
+            return new List<User> { };
         }
     }
 }
