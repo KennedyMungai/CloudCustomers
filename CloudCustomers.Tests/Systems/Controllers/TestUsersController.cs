@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Moq;
 using CloudCustomers.API.Services;
 using CloudCustomers.API.Models;
+using CloudCustomers.Tests.Fixtures;
 
 public class TestUsersController
 {
@@ -47,18 +48,7 @@ public class TestUsersController
         var mockUsersService = new Mock<IUserService>();
         mockUsersService
                 .Setup(service => service.GetAllUsers())
-                .ReturnsAsync(new List<User>(){
-                    new(){
-                        Id = 1,
-                        Name = "John",
-                        Email = "XXXXXXXXXXXXXX",
-                        Address = new Address(){
-                            Street = "Street",
-                            City = "City",
-                            ZipCode = "ZipCode"
-                        }
-                    }
-                });
+                .ReturnsAsync(UsersFixture.GetTestUsers());
         var sut = new UsersController(mockUsersService.Object);
         // Act
         var result = await sut.GetUsersEndpoint() as OkObjectResult;
