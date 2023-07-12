@@ -25,7 +25,7 @@ public class TestUserService
                 .Protected()
                 .Verify(
                     "SendAsync",
-                    Times.Once(),
+                    Times.Exactly(1),
                     ItExpr.Is<HttpRequestMessage>(request => request.Method == HttpMethod.Get)
                 );
     }
