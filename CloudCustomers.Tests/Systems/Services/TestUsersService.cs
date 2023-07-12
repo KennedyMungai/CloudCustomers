@@ -30,4 +30,13 @@ public class TestUserService
                     ItExpr.IsAny<CancellationToken>()
                 );
     }
+
+
+    [Fact]
+    public async Task GetAllUsers_WhenCalled_ReturnsListOfUsers()
+    {
+        // Arrange
+        // Act
+        // Assert
+    }
 }
