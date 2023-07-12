@@ -2,6 +2,8 @@ using CloudCustomers.API.Models;
 using CloudCustomers.API.Services;
 using CloudCustomers.Tests.Fixtures;
 using CloudCustomers.Tests.Helpers;
+using Moq;
+using Moq.Protected;
 
 namespace CloudCustomers.Tests.Systems.Services;
 
@@ -19,5 +21,12 @@ public class TestUserService
         // Act
         await sut.GetAllUsers();
         // Assert
+        handlerMock
+                .Protected()
+                .Verify(
+                    "SendAsync",
+                    Times.Once(),
+                    ItExpr.Is<HttpRequestMessage>(request => request.Method == HttpMethod.Get)
+                );
     }
 }
