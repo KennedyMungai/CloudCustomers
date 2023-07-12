@@ -2,6 +2,7 @@ using CloudCustomers.API.Models;
 using CloudCustomers.API.Services;
 using CloudCustomers.Tests.Fixtures;
 using CloudCustomers.Tests.Helpers;
+using FluentAssertions;
 using Moq;
 using Moq.Protected;
 
@@ -36,7 +37,13 @@ public class TestUserService
     public async Task GetAllUsers_WhenCalled_ReturnsListOfUsers()
     {
         // Arrange
+        var expectedResponse = UsersFixture.GetTestUsers();
+        var handlerMock = MockHttpMessageHandlers<User>.SetupBasicGetResourceList(expectedResponse: expectedResponse);
+        var httpClient = new HttpClient(handlerMock.Object);
+        var sut = new UserService(httpClient);
         // Act
+        var result = await sut.GetAllUsers();
         // Assert
+        result.Should().BeOfType<List<User>>();
     }
 }
