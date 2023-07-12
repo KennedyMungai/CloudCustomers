@@ -34,7 +34,7 @@ public static class MockHttpMessageHandlers<T>
         return handlerMock;
     }
 
-    public static object SetupReturn404()
+    public static Mock<HttpMessageHandler> SetupReturn404()
     {
         var mockResponse = new HttpResponseMessage(HttpStatusCode.NotFound)
         {
