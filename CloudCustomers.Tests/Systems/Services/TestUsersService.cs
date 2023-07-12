@@ -26,7 +26,8 @@ public class TestUserService
                 .Verify(
                     "SendAsync",
                     Times.Exactly(1),
-                    ItExpr.Is<HttpRequestMessage>(request => request.Method == HttpMethod.Get)
+                    ItExpr.Is<HttpRequestMessage>(request => request.Method == HttpMethod.Get),
+                    ItExpr.IsAny<CancellationToken>()
                 );
     }
 }
