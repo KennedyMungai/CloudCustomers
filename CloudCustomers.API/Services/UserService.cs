@@ -15,7 +15,7 @@ namespace CloudCustomers.API.Services
             _httpClient = httpClient;
         }
 
-        public Task<List<User>> GetAllUsers()
+        public async Task<List<User>> GetAllUsers()
         {
             throw new NotImplementedException();
         }
