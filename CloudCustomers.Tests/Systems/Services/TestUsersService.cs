@@ -46,4 +46,19 @@ public class TestUserService
         // Assert
         result.Should().BeOfType<List<User>>();
     }
+
+    [Fact]
+    public async Task GetAllUsers_WhenCalled_ReturnsListOfUsersWithCorrectCount()
+    {
+        // Arrange
+        var handlerMock = MockHttpMessageHandlers<User>.SetupReturn404();
+        var httpClient = new HttpClient(handlerMock.Object);
+        var sut = new UserService(httpClient);
+
+        // Act
+        var result = await sut.GetAllUsers();
+
+        // Assert
+        result.Count().Should().Be(0);
+    }
 }
